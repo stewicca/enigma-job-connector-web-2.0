@@ -55,8 +55,8 @@ export const Layout = ({ children }) => {
                     <Breadcrumb>
                         <BreadcrumbList>
                             <BreadcrumbItem className='hidden md:block'>
-                                <BreadcrumbLink href='#'>
-                                    Building Your Application
+                                <BreadcrumbLink href='/dashboard'>
+                                    Dashboard
                                 </BreadcrumbLink>
                             </BreadcrumbItem>
                             <BreadcrumbSeparator className='hidden md:block' />

@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { Layout } from '@/components/layouts/layout.jsx';
 import { Loading } from '@/components/common/loading.jsx';
 import { Navigate, Outlet, useRoutes } from 'react-router';
-import { NotFoundPage, ErrorPage, LoginPage } from '@/pages';
+import { NotFoundPage, ErrorPage, LoginPage, DashboardPage, BatchPage } from '@/pages';
 
 const AppRouter = () => {
     return useRoutes([
@@ -26,17 +26,21 @@ const AppRouter = () => {
         {
             path: '/dashboard',
             element: (
-                <Layout>
-                    <Suspense fallback={<Loading />}>
+                <Suspense fallback={<Loading />}>
+                    <Layout>
                         <Outlet />
-                    </Suspense>
-                </Layout>
+                    </Layout>
+                </Suspense>
             ),
             errorElement: <ErrorPage />,
             children: [
                 {
                     index: true,
-                    element: <div></div>
+                    element: <DashboardPage />
+                },
+                {
+                    path: 'batch',
+                    element: <BatchPage />
                 }
             ]
         }
