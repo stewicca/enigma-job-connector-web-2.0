@@ -5,24 +5,24 @@ import { SearchComponent } from '@/components/common/search.jsx';
 import { ConfirmDialog } from '@/components/common/confirm-dialog.jsx';
 import { TableHeadSort } from '@/components/common/table-head-sort.jsx';
 import { PaginationComponent } from '@/components/common/pagination.jsx';
-import AddBatchSheet from '@/pages/batch/components/add-batch-sheet.jsx';
-import EditBatchSheet from '@/pages/batch/components/edit-batch-sheet.jsx';
-import { EmptyBatchList } from '@/pages/batch/components/empty-batch-list.jsx';
+import AddClientSheet from '@/pages/client/components/add-client-sheet.jsx';
+import EditClientSheet from '@/pages/client/components/edit-client-sheet.jsx';
+import { EmptyClientList } from '@/pages/client/components/empty-client-list.jsx';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
-const BatchList = ({ data, onDelete, onPage, direction, onSort, search, onSearch }) => {
-    if (!data) return <EmptyBatchList />
+const ClientList = ({ data, onDelete, onPage, direction, onSort, search, onSearch }) => {
+    if (!data) return <EmptyClientList />
 
     return (
         <div className='w-full space-y-4'>
-            <h1 className='md:text-lg font-semibold'>Batch Management</h1>
+            <h1 className='md:text-lg font-semibold'>Client Management</h1>
             <div className='flex items-center gap-4'>
-                <SearchComponent placeholder='Search Batch...' value={search} onSubmit={onSearch}/>
-                <AddBatchSheet>
+                <SearchComponent placeholder='Search Client...' value={search} onSubmit={onSearch} />
+                <AddClientSheet>
                     <Button variant='outline' className='ml-auto'>
-                        <CirclePlus className='mr-2 h-4 w-4'/> Add Batch
+                        <CirclePlus className='mr-2 h-4 w-4'/> Add Client
                     </Button>
-                </AddBatchSheet>
+                </AddClientSheet>
             </div>
             <Table>
                 <TableCaption>
@@ -34,7 +34,8 @@ const BatchList = ({ data, onDelete, onPage, direction, onSort, search, onSearch
                 <TableHeader>
                     <TableRow>
                         <TableHead className='w-[100px]'>No</TableHead>
-                        <TableHeadSort name='Batch' field='name' direction={direction} onSort={onSort}/>
+                        <TableHeadSort name='Client' field='name' direction={direction} onSort={onSort} />
+                        <TableHeadSort name='Address' field='address' direction={direction} onSort={onSort} />
                         <TableHead className='text-right'>Actions</TableHead>
                     </TableRow>
                 </TableHeader>
@@ -43,13 +44,14 @@ const BatchList = ({ data, onDelete, onPage, direction, onSort, search, onSearch
                         <TableRow key={index}>
                             <TableCell className='font-medium'>{index + 1}</TableCell>
                             <TableCell>{item.name}</TableCell>
+                            <TableCell>{item.address}</TableCell>
                             <TableCell className='text-right space-x-4'>
-                                <EditBatchSheet batch={item}>
+                                <EditClientSheet client={item}>
                                     <Button variant='outline'>
                                         <Pencil className='h-4 w-4'/>
                                         Edit
                                     </Button>
-                                </EditBatchSheet>
+                                </EditClientSheet>
                                 <ConfirmDialog onConfirm={() => onDelete(item.id)}>
                                     <Button variant='outline'>
                                         <Trash className='h-4 w-4'/>
@@ -65,7 +67,7 @@ const BatchList = ({ data, onDelete, onPage, direction, onSort, search, onSearch
     );
 }
 
-BatchList.propTypes = {
+ClientList.propTypes = {
     data: PropTypes.object,
     onDelete: PropTypes.func,
     onPage: PropTypes.func,
@@ -75,4 +77,4 @@ BatchList.propTypes = {
     onSearch: PropTypes.func
 }
 
-export default BatchList;
+export default ClientList;

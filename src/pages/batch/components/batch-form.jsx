@@ -17,7 +17,7 @@ const BatchForm = ({ onSubmit, batch }) => {
 
     const handleSubmit = async (values) => {
         await onSubmit(values);
-        form.reset({ name: '' });
+        form.reset({ name: batch?.name ?? '' });
     }
 
     return (

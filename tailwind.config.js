@@ -9,10 +9,7 @@ export default {
     ],
     theme: {
     	fontFamily: {
-    		sans: [
-    			'Nunito Variable',
-    			'sans-serif'
-    		]
+    		sans: ['Nunito Variable', 'sans-serif']
     	},
     	extend: {
     		borderRadius: {
@@ -74,5 +71,5 @@ export default {
     		}
     	}
     },
-    plugins: [tailwindcssAnimate, require("tailwindcss-animate")],
+    plugins: [tailwindcssAnimate],
 }

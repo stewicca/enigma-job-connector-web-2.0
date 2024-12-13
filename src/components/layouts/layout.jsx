@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { Separator } from '@/components/ui/separator';
 import { useJwtDecode } from '@/hooks/use-jwt-decode.js';
 import { SidebarComponent } from '@/components/common/sidebar.jsx';
+import { generateBreadcrumbs } from '@/lib/generate-breadcrumbs.js';
 import { BriefcaseBusiness, Group, Home, NotebookPen, Users } from 'lucide-react';
 import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar.jsx';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
@@ -44,6 +45,7 @@ const adminItems = [
 
 export const Layout = ({ children }) => {
     const { role } = useJwtDecode();
+    const breadcrumbs = generateBreadcrumbs();
 
     return (
         <SidebarProvider>
@@ -54,15 +56,20 @@ export const Layout = ({ children }) => {
                     <Separator orientation='vertical' className='mr-2 h-4' />
                     <Breadcrumb>
                         <BreadcrumbList>
-                            <BreadcrumbItem className='hidden md:block'>
-                                <BreadcrumbLink href='/dashboard'>
-                                    Dashboard
-                                </BreadcrumbLink>
-                            </BreadcrumbItem>
-                            <BreadcrumbSeparator className='hidden md:block' />
-                            <BreadcrumbItem>
-                                <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                            </BreadcrumbItem>
+                            {breadcrumbs.map((crumb, index) => (
+                                <div key={index} className='flex items-center gap-2'>
+                                    <BreadcrumbItem>
+                                        {index < breadcrumbs.length - 1 ? (
+                                            <BreadcrumbLink href={crumb.url}>{crumb.title}</BreadcrumbLink>
+                                        ) : (
+                                            <BreadcrumbPage>{crumb.title}</BreadcrumbPage>
+                                        )}
+                                    </BreadcrumbItem>
+                                    {index < breadcrumbs.length - 1 && (
+                                        <BreadcrumbSeparator />
+                                    )}
+                                </div>
+                            ))}
                         </BreadcrumbList>
                     </Breadcrumb>
                 </header>
