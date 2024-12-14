@@ -14,7 +14,8 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://152.42.224.141:8080/api',
+        target: 'https://enigjob.my.id/api',
+        secure: true,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },

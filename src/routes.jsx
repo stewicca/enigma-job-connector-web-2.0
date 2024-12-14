@@ -2,7 +2,17 @@ import { Suspense } from 'react';
 import { Layout } from '@/components/layouts/layout.jsx';
 import { Loading } from '@/components/common/loading.jsx';
 import { Navigate, Outlet, useRoutes } from 'react-router';
-import { NotFoundPage, ErrorPage, LoginPage, DashboardPage, BatchPage, ClientPage } from '@/pages';
+import {
+    NotFoundPage,
+    ErrorPage,
+    LoginPage,
+    DashboardPage,
+    BatchPage,
+    ClientPage,
+    UserPage,
+    AddUserPage,
+    EditUserPage
+} from '@/pages';
 
 const AppRouter = () => {
     return useRoutes([
@@ -45,6 +55,18 @@ const AppRouter = () => {
                 {
                     path: 'client',
                     element: <ClientPage />
+                },
+                {
+                    path: 'user',
+                    element: <UserPage />
+                },
+                {
+                    path: 'user/add',
+                    element: <AddUserPage />
+                },
+                {
+                    path: 'user/edit/:id',
+                    element: <EditUserPage />
                 }
             ]
         }

@@ -27,14 +27,14 @@ const ClientList = ({ data, onDelete, onPage, direction, onSort, search, onSearc
             <Table>
                 <TableCaption>
                     <div className='space-y-4'>
-                        <span className='text-sm'>Showing {data.data.length} of {data.page.totalItems} batch</span>
+                        <span className='text-sm'>Showing {data.data.length} of {data.page.totalItems} client</span>
                         <PaginationComponent page={data.page} onPage={onPage}/>
                     </div>
                 </TableCaption>
                 <TableHeader>
                     <TableRow>
                         <TableHead className='w-[100px]'>No</TableHead>
-                        <TableHeadSort name='Client' field='name' direction={direction} onSort={onSort} />
+                        <TableHeadSort name='Client' field='name' direction={direction} onSort={onSort} className='w-[150px]' />
                         <TableHeadSort name='Address' field='address' direction={direction} onSort={onSort} />
                         <TableHead className='text-right'>Actions</TableHead>
                     </TableRow>

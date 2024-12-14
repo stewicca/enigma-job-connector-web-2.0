@@ -4,7 +4,7 @@ import { MoreHorizontal, Pencil, Trash } from 'lucide-react';
 import { ConfirmDialog } from '@/components/common/confirm-dialog.jsx';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 
-export const ButtonAction = ({ id, onDelete }) => {
+export const ButtonAction = ({ id, href, onDelete }) => {
     const router = useRouter();
     
     return (
@@ -17,7 +17,7 @@ export const ButtonAction = ({ id, onDelete }) => {
                 <DropdownMenuLabel>
                     Actions
                 </DropdownMenuLabel>
-                <DropdownMenuItem onClick={() => router.push(`/dashboard/batch/edit/${id}`)}>
+                <DropdownMenuItem onClick={() => router.push(`${href}/${id}`)}>
                     <Pencil className='mr-2 h-4 w-4'/>
                     Edit
                 </DropdownMenuItem>
@@ -34,5 +34,6 @@ export const ButtonAction = ({ id, onDelete }) => {
 
 ButtonAction.propTypes = {
     id: PropTypes.string,
+    href: PropTypes.string,
     onDelete: PropTypes.func
 }

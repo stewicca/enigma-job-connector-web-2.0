@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { Input } from '@/components/ui/input';
@@ -18,11 +19,14 @@ const ClientForm = ({ onSubmit, client }) => {
 
     const handleSubmit = async (values) => {
         await onSubmit(values);
+    }
+    
+    useEffect(() => {
         form.reset({
             name: client?.name ?? '',
             address: client?.address ?? ''
         });
-    }
+    }, [client]);
 
     return (
         <SheetContent>

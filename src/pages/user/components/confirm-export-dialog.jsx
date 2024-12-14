@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 
-export const ConfirmDialog = ({ onConfirm, children }) => {
+export const ConfirmExportDialog = ({ onConfirm, children }) => {
     return (
         <AlertDialog>
             <AlertDialogTrigger asChild>
@@ -9,21 +9,21 @@ export const ConfirmDialog = ({ onConfirm, children }) => {
             </AlertDialogTrigger>
             <AlertDialogContent>
                 <AlertDialogHeader>
-                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                    <AlertDialogTitle>Confirm Data Export</AlertDialogTitle>
                     <AlertDialogDescription>
-                        This action cannot be undone. This will permanently delete the selected item.
+                        This action will generate an export file.
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={onConfirm}>Continue</AlertDialogAction>
+                    <AlertDialogAction onClick={onConfirm}>Export</AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>
     );
 }
 
-ConfirmDialog.propTypes = {
+ConfirmExportDialog.propTypes = {
     onConfirm: PropTypes.func,
     children: PropTypes.node
 }

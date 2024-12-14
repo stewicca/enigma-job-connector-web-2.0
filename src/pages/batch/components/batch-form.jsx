@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { batchFormSchema } from '@/pages/batch/schema/index.js';
 import { SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form.jsx';
+import {useEffect} from "react";
 
 const BatchForm = ({ onSubmit, batch }) => {
     const form = useForm({
@@ -17,8 +18,13 @@ const BatchForm = ({ onSubmit, batch }) => {
 
     const handleSubmit = async (values) => {
         await onSubmit(values);
-        form.reset({ name: batch?.name ?? '' });
     }
+
+    useEffect(() => {
+        form.reset({
+            name: batch?.name ?? ''
+        });
+    }, [batch]);
 
     return (
         <SheetContent>
