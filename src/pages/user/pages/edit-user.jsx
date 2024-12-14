@@ -6,6 +6,7 @@ import { useRouter } from '@/hooks/use-router.js';
 import { useDebounce } from '@/hooks/use-debounce.js';
 import { getErrorMessage } from '@/lib/get-error-message.js';
 import UserForm from '@/pages/user/components/user-form.jsx';
+import { useBlockAccess } from '@/hooks/use-block-access.js';
 import { FormLoading } from '@/components/common/form-loading.jsx';
 
 // API URL
@@ -13,6 +14,7 @@ const USER_API_URL = '/api/user';
 const BATCH_API_URL = '/api/user/category';
 
 const EditUserPage = () => {
+    useBlockAccess(['SuperAdmin']);
     const router = useRouter();
     const { id } = useParams();
     const [batch, setBatch] = useDebounce();
