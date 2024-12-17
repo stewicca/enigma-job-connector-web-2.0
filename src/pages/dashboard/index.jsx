@@ -6,6 +6,7 @@ import { useBlockAccess } from '@/hooks/use-block-access.js';
 // API URL
 const GET_ME_API_URL = '/api/user/me';
 
+// TODO: TOTAL USER, BATCH, CLIENT
 const DashboardPage = () => {
     useBlockAccess(['SuperAdmin', 'Admin']);
     const { data, isLoading } = useFetch(HTTP_METHODS.GET, GET_ME_API_URL);

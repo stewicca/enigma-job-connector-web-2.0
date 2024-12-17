@@ -15,7 +15,10 @@ import {
     TestPage,
     TestTraineesPage,
     AddTestPage,
-    EditTestPage
+    EditTestPage,
+    ForgotPasswordPage,
+    VerifyPage,
+    InvalidCodePage
 } from '@/pages';
 
 const AppRouter = () => {
@@ -34,11 +37,26 @@ const AppRouter = () => {
             errorElement: <ErrorPage />
         },
         {
+            path: 'forgot-password',
+            element: <ForgotPasswordPage />,
+            errorElement: <ErrorPage />
+        },
+        {
+            path: 'verify',
+            element: <VerifyPage />,
+            errorElement: <ErrorPage />
+        },
+        {
+            path: 'invalid-code',
+            element: <InvalidCodePage />,
+            errorElement: <InvalidCodePage />
+        },
+        {
             path: '/',
             element: <Navigate to='/dashboard' replace />
         },
         {
-            path: '/dashboard',
+            path: 'dashboard',
             element: (
                 <Suspense fallback={<Loading />}>
                     <Layout>

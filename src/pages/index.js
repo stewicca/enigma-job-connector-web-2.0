@@ -13,6 +13,9 @@ const TestPage = lazy(() => import('@/pages/test'));
 const TestTraineesPage = lazy(() => import('@/pages/test/pages/test-trainees.jsx'));
 const AddTestPage = lazy(() => import('@/pages/test/pages/add-test.jsx'));
 const EditTestPage = lazy(() => import('@/pages/test/pages/edit-test.jsx'));
+const ForgotPasswordPage = lazy(() => import('@/pages/forgot-password'));
+const VerifyPage = lazy(() => import('@/pages/forgot-password/pages/verify.jsx'));
+const InvalidCodePage = lazy(() => import('@/pages/forgot-password/pages/invalid-code.jsx'));
 
 export {
     NotFoundPage,
@@ -27,5 +30,8 @@ export {
     TestPage,
     TestTraineesPage,
     AddTestPage,
-    EditTestPage
+    EditTestPage,
+    ForgotPasswordPage,
+    VerifyPage,
+    InvalidCodePage
 }

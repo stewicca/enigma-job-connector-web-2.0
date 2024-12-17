@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -74,7 +75,7 @@ const LoginForm = ({ isLoading, onSubmit }) => {
                     </form>
                 </Form>
                 <div className='mt-4 text-center text-sm'>
-                    <a href='#' className='text-blue-600 hover:underline'>Forgot your password?</a>
+                    <Link to='/forgot-password' className='text-blue-600 hover:underline'>Forgot your password?</Link>
                 </div>
             </div>
         </div>
