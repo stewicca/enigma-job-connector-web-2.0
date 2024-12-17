@@ -1,13 +1,19 @@
 import PropTypes from 'prop-types';
+import { Pencil, Trash } from 'lucide-react';
+import { useRouter } from '@/hooks/use-router.js';
+import { Button } from '@/components/ui/button.jsx';
 import UserMenu from '@/pages/user/components/user-menu.jsx';
 import { EmptyList } from '@/components/common/empty-list.jsx';
 import { SearchComponent } from '@/components/common/search.jsx';
-import { ButtonAction } from '@/components/common/button-action.jsx';
+import { ConfirmDialog } from '@/components/common/confirm-dialog.jsx';
 import { TableHeadSort } from '@/components/common/table-head-sort.jsx';
 import { PaginationComponent } from '@/components/common/pagination.jsx';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
+// TODO: Import
 const UserList = ({ data, onDelete, onPage, direction, onSort, search, onSearch }) => {
+    const router = useRouter();
+
     if (data?.data?.length === 0) return <EmptyList href='/dashboard/user/add' />
 
     return (
@@ -45,7 +51,16 @@ const UserList = ({ data, onDelete, onPage, direction, onSort, search, onSearch 
                             <TableCell>{item.role}</TableCell>
                             <TableCell>{item.category?.name}</TableCell>
                             <TableCell className='text-right space-x-4'>
-                                <ButtonAction id={item.id} href='/dashboard/user/edit' onDelete={onDelete} />
+                                <Button variant='outline' onClick={() => router.push(`/dashboard/user/edit/${item.id}`)}>
+                                    <Pencil className='h-4 w-4'/>
+                                    Edit
+                                </Button>
+                                <ConfirmDialog onConfirm={() => onDelete(item.id)}>
+                                    <Button variant='outline'>
+                                        <Trash className='h-4 w-4'/>
+                                        Delete
+                                    </Button>
+                                </ConfirmDialog>
                             </TableCell>
                         </TableRow>
                     ))}

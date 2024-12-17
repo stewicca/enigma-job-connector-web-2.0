@@ -35,7 +35,6 @@ const UserPage = () => {
     return (
         <UserList
             data={data}
-            refetch={refetch}
             onDelete={handleDelete}
             onPage={handlePage}
             direction={direction}

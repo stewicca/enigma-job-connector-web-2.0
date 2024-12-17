@@ -9,6 +9,10 @@ const ClientPage = lazy(() => import('@/pages/client'));
 const UserPage = lazy(() => import('@/pages/user'));
 const AddUserPage = lazy(() => import('@/pages/user/pages/add-user.jsx'));
 const EditUserPage = lazy(() => import('@/pages/user/pages/edit-user.jsx'));
+const TestPage = lazy(() => import('@/pages/test'));
+const TestTraineesPage = lazy(() => import('@/pages/test/pages/test-trainees.jsx'));
+const AddTestPage = lazy(() => import('@/pages/test/pages/add-test.jsx'));
+const EditTestPage = lazy(() => import('@/pages/test/pages/edit-test.jsx'));
 
 export {
     NotFoundPage,
@@ -19,5 +23,9 @@ export {
     ClientPage,
     UserPage,
     AddUserPage,
-    EditUserPage
+    EditUserPage,
+    TestPage,
+    TestTraineesPage,
+    AddTestPage,
+    EditTestPage
 }

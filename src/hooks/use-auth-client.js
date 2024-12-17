@@ -12,7 +12,7 @@ export const useAuthClient = () => {
     useEffect(() => {
         const requestInterceptor = authClient.interceptors.request.use(
             (config) => {
-                const accessToken = JSON.parse(sessionStorage.getItem('accessToken'));
+                const accessToken = localStorage.getItem('accessToken');
                 if (accessToken) {
                     config.headers.Authorization = `Bearer ${accessToken}`;
                 }
@@ -29,11 +29,10 @@ export const useAuthClient = () => {
                     originalRequest._retry = true;
                     try {
                         const { data } = await refreshToken();
-                        sessionStorage.setItem('accessToken', JSON.stringify(data.accessToken));
+                        localStorage.setItem('accessToken', data.accessToken);
                         originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
                         return authClient.request(originalRequest);
                     } catch (refreshError) {
-                        sessionStorage.removeItem('accessToken');
                         toast({ variant: 'destructive', description: 'Token expired, please login' });
                         router.replace('/login');
                         return Promise.reject(refreshError);

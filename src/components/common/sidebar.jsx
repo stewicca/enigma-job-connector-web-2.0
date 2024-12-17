@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
-import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar.jsx';
+import { User2, ChevronUp } from 'lucide-react';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu.jsx';
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar.jsx';
 
-export const SidebarComponent = ({ items }) => {
+export const SidebarComponent = ({ name, items, onLogout }) => {
     return (
         <Sidebar>
             <SidebarContent>
@@ -24,10 +26,34 @@ export const SidebarComponent = ({ items }) => {
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
+            <SidebarFooter>
+                <SidebarMenu>
+                    <SidebarMenuItem>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <SidebarMenuButton>
+                                    <User2 /> {name}
+                                    <ChevronUp className='ml-auto' />
+                                </SidebarMenuButton>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent side='top' className='w-[--radix-popper-anchor-width]'>
+                                <DropdownMenuItem>
+                                    <span>Account</span>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => onLogout()}>
+                                    <span>Sign out</span>
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    </SidebarMenuItem>
+                </SidebarMenu>
+            </SidebarFooter>
         </Sidebar>
     );
 }
 
 SidebarComponent.propTypes = {
-    items: PropTypes.array
+    name: PropTypes.string,
+    items: PropTypes.array,
+    onLogout: PropTypes.func
 }

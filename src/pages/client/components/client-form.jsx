@@ -19,6 +19,10 @@ const ClientForm = ({ onSubmit, client }) => {
 
     const handleSubmit = async (values) => {
         await onSubmit(values);
+        form.reset({
+            name: '',
+            address: ''
+        });
     }
     
     useEffect(() => {

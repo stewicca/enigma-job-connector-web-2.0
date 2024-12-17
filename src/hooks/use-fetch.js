@@ -76,6 +76,21 @@ export const useFetch = (method, url, conf, deps = []) => {
                     }
                 },
             });
+        case HTTP_METHODS.FIND_FILE:
+            return useMutation({
+                mutationFn: async () => {
+                    try {
+                        const id = deps[0];
+                        const { data } = await authClient.get(`${url}/${id}`, conf);
+                        return data;
+                    } catch (error) {
+                        if (error instanceof AxiosError) {
+                            throw error;
+                        }
+                        throw new Error('An error occurred.');
+                    }
+                }
+            });
         case HTTP_METHODS.POST:
             return useMutation({
                 mutationFn: async (request) => {
@@ -95,6 +110,20 @@ export const useFetch = (method, url, conf, deps = []) => {
                 mutationFn: async (request) => {
                     try {
                         const id = deps[0];
+                        const { data } = await authClient.put(`${url}/${id}`, request, conf);
+                        return data;
+                    } catch (error) {
+                        if (error instanceof AxiosError) {
+                            throw error;
+                        }
+                        throw new Error('An error occurred.');
+                    }
+                },
+            });
+        case HTTP_METHODS.PUT_DYNAMIC:
+            return useMutation({
+                mutationFn: async ({ id, request }) => {
+                    try {
                         const { data } = await authClient.put(`${url}/${id}`, request, conf);
                         return data;
                     } catch (error) {

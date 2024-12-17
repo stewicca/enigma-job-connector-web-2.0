@@ -1,3 +1,4 @@
+// TODO: Handle Params
 export const generateBreadcrumbs = () => {
     const pathSegments = location.pathname.split('/').filter(Boolean);
     const breadcrumbs = [];

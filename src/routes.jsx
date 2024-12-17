@@ -11,7 +11,11 @@ import {
     ClientPage,
     UserPage,
     AddUserPage,
-    EditUserPage
+    EditUserPage,
+    TestPage,
+    TestTraineesPage,
+    AddTestPage,
+    EditTestPage
 } from '@/pages';
 
 const AppRouter = () => {
@@ -46,27 +50,53 @@ const AppRouter = () => {
             children: [
                 {
                     index: true,
-                    element: <DashboardPage />
+                    element: <DashboardPage />,
+                    errorElement: <ErrorPage />
                 },
                 {
                     path: 'batch',
-                    element: <BatchPage />
+                    element: <BatchPage />,
+                    errorElement: <ErrorPage />
                 },
                 {
                     path: 'client',
-                    element: <ClientPage />
+                    element: <ClientPage />,
+                    errorElement: <ErrorPage />
                 },
                 {
                     path: 'user',
-                    element: <UserPage />
+                    element: <UserPage />,
+                    errorElement: <ErrorPage />
                 },
                 {
                     path: 'user/add',
-                    element: <AddUserPage />
+                    element: <AddUserPage />,
+                    errorElement: <ErrorPage />
                 },
                 {
                     path: 'user/edit/:id',
-                    element: <EditUserPage />
+                    element: <EditUserPage />,
+                    errorElement: <ErrorPage />
+                },
+                {
+                    path: 'test',
+                    element: <TestPage />,
+                    errorElement: <ErrorPage />
+                },
+                {
+                    path: 'test/trainees/:id',
+                    element: <TestTraineesPage />,
+                    errorElement: <ErrorPage />
+                },
+                {
+                    path: 'test/add',
+                    element: <AddTestPage />,
+                    errorElement: <ErrorPage />
+                },
+                {
+                    path: 'test/edit/:id',
+                    element: <EditTestPage />,
+                    errorElement: <ErrorPage />
                 }
             ]
         }

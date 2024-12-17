@@ -14,7 +14,7 @@ const LoginPage = () => {
     const handleSubmit = async (body) => {
         try {
             const { data, message } = await login(body);
-            sessionStorage.setItem('accessToken', JSON.stringify(data.accessToken));
+            localStorage.setItem('accessToken', data.accessToken);
             toast({ description: message });
             router.replace('/');
         } catch (error) {

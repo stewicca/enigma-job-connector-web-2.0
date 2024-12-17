@@ -11,7 +11,7 @@ import { EmptyBatchList } from '@/pages/batch/components/empty-batch-list.jsx';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 const BatchList = ({ data, onDelete, onPage, direction, onSort, search, onSearch }) => {
-    if (!data) return <EmptyBatchList />
+    if (data?.data.length === 0) return <EmptyBatchList />
 
     return (
         <div className='w-full space-y-4'>

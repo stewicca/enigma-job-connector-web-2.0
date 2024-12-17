@@ -15,8 +15,6 @@ const ExportUser = ({ children }) => {
         try {
             const blob = await mutateAsync(EXPORT_USER_API_URL);
 
-            console.log(blob);
-
             const url = window.URL.createObjectURL(new Blob([blob]));
 
             const link = document.createElement('a');

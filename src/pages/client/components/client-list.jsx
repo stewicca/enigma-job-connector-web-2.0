@@ -11,7 +11,7 @@ import { EmptyClientList } from '@/pages/client/components/empty-client-list.jsx
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 const ClientList = ({ data, onDelete, onPage, direction, onSort, search, onSearch }) => {
-    if (!data) return <EmptyClientList />
+    if (data?.data.length === 0) return <EmptyClientList />
 
     return (
         <div className='w-full space-y-4'>
