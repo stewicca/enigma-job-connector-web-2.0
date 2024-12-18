@@ -8,7 +8,7 @@ import DashboardSkeleton from '@/pages/dashboard/components/dashboard-skeleton.j
 const GET_ME_API_URL = '/api/user/me';
 const BATCH_API_URL = '/api/user/category';
 const USER_API_URL = '/api/user';
-const CLIENT_API_URL = '/api/user';
+const CLIENT_API_URL = '/api/client';
 
 const DashboardPage = () => {
     useBlockAccess(['SuperAdmin', 'Admin']);

@@ -36,7 +36,7 @@ const UserForm = ({ categories, initialValues, onSearchBatch, isLoading, onSubmi
     return (
         <div className='w-full space-y-4'>
             <h1 className='md:text-lg font-semibold'>{initialValues ? 'Edit User' : 'Add User'}</h1>
-            <span className='md:text-sm font-light'>{initialValues ? 'Form untuk mengubah user.' : 'Form untuk menambahkan user.'}</span>
+            <span className='md:text-sm font-light'>{initialValues ? 'Form to edit user.' : 'Form to add user.'}</span>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(handleSubmit)} className='space-y-8'>
                     <FormField
@@ -49,7 +49,7 @@ const UserForm = ({ categories, initialValues, onSearchBatch, isLoading, onSubmi
                                     <Input placeholder='John Doe' {...field} />
                                 </FormControl>
                                 <FormDescription>
-                                    Kolom nama user.
+                                    User name field.
                                 </FormDescription>
                                 <FormMessage/>
                             </FormItem>
@@ -65,7 +65,7 @@ const UserForm = ({ categories, initialValues, onSearchBatch, isLoading, onSubmi
                                     <Input type='email' placeholder='johndoe@example.com' {...field} />
                                 </FormControl>
                                 <FormDescription>
-                                    Kolom email user.
+                                    User email field.
                                 </FormDescription>
                                 <FormMessage/>
                             </FormItem>
@@ -81,7 +81,7 @@ const UserForm = ({ categories, initialValues, onSearchBatch, isLoading, onSubmi
                                     <Input placeholder='0812345678' {...field} />
                                 </FormControl>
                                 <FormDescription>
-                                    Kolom nomor hp user.
+                                    User phone number field.
                                 </FormDescription>
                                 <FormMessage/>
                             </FormItem>
@@ -98,7 +98,7 @@ const UserForm = ({ categories, initialValues, onSearchBatch, isLoading, onSubmi
                                         <Input type='password' placeholder='********' {...field} />
                                     </FormControl>
                                     <FormDescription>
-                                        Kolom password user.
+                                        User password field.
                                     </FormDescription>
                                     <FormMessage/>
                                 </FormItem>
@@ -123,7 +123,7 @@ const UserForm = ({ categories, initialValues, onSearchBatch, isLoading, onSubmi
                                     </SelectContent>
                                 </Select>
                                 <FormDescription>
-                                    Kolom pilihan role user.
+                                    User role selection field.
                                 </FormDescription>
                                 <FormMessage/>
                             </FormItem>
@@ -149,7 +149,7 @@ const UserForm = ({ categories, initialValues, onSearchBatch, isLoading, onSubmi
                                     </SelectContent>
                                 </Select>
                                 <FormDescription>
-                                    Kolom pilihan batch.
+                                    Batch selection field.
                                 </FormDescription>
                                 <FormMessage/>
                             </FormItem>

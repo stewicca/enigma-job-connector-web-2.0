@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { toast } from '@/hooks/use-toast.js';
 import { useFetch } from '@/hooks/use-fetch.js';
@@ -11,8 +12,9 @@ import BatchForm from '@/pages/batch/components/batch-form.jsx';
 const BATCH_API_URL = '/api/user/category';
 
 const EditBatchSheet = ({ children, batch }) => {
+    const [isOpen, setIsOpen] = useState(false);
     const queryClient = useQueryClient();
-    const { mutateAsync: editBatch } = useFetch(HTTP_METHODS.PUT, BATCH_API_URL, {}, [batch.id]);
+    const { mutateAsync: editBatch, isPending } = useFetch(HTTP_METHODS.PUT, BATCH_API_URL, {}, [batch.id]);
 
     const handleSubmit = async (body) => {
         try {
@@ -21,15 +23,17 @@ const EditBatchSheet = ({ children, batch }) => {
             await queryClient.invalidateQueries({queryKey: [BATCH_API_URL]});
         } catch (error) {
             toast({ variant: 'destructive', description: getErrorMessage(error) });
+        } finally {
+            setIsOpen(false);
         }
     };
 
     return (
-        <Sheet>
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
                 {children}
             </SheetTrigger>
-            <BatchForm batch={batch} onSubmit={handleSubmit} />
+            <BatchForm batch={batch} onSubmit={handleSubmit} isLoading={isPending} />
         </Sheet>
     );
 }

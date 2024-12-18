@@ -44,9 +44,6 @@ export const SidebarComponent = ({ name, items, onLogout }) => {
                                 </SidebarMenuButton>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent side='top' className='w-[--radix-popper-anchor-width]'>
-                                {/*<DropdownMenuItem>*/}
-                                {/*    <span>Account</span>*/}
-                                {/*</DropdownMenuItem>*/}
                                 <DropdownMenuItem onClick={() => onLogout()}>
                                     <span>Sign out</span>
                                 </DropdownMenuItem>

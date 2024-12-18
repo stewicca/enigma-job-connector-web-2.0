@@ -12,8 +12,8 @@ const UserMenu = () => {
 
     const handleImportClick = (e) => {
         e.preventDefault();
-        setIsOpen(false); // Close the dropdown
-        setShowImportDialog(true); // Open the import dialog
+        setIsOpen(false);
+        setShowImportDialog(true);
     };
 
     return (

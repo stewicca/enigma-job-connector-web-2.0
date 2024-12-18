@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  enigjob-web:
+    container_name: enigjob-web
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - '3000:80'
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf

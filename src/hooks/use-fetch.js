@@ -8,7 +8,7 @@ export const useFetch = (method, url, conf, deps = []) => {
         return useMutation({
             mutationFn: async (request) => {
                 try {
-                    const { data } = await axios.post(url, request, conf);
+                    const { data } = await axios.post(url, request, { ...conf });
                     return data;
                 } catch (error) {
                     if (error instanceof AxiosError) {

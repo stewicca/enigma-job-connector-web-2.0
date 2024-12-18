@@ -5,10 +5,10 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { clientFormSchema } from '@/pages/client/schema/index.js';
-import { SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle } from '@/components/ui/sheet';
+import { SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form.jsx';
 
-const ClientForm = ({ onSubmit, client }) => {
+const ClientForm = ({ onSubmit, client, isLoading }) => {
     const form = useForm({
         resolver: zodResolver(clientFormSchema),
         defaultValues: {
@@ -24,7 +24,7 @@ const ClientForm = ({ onSubmit, client }) => {
             address: ''
         });
     }
-    
+
     useEffect(() => {
         form.reset({
             name: client?.name ?? '',
@@ -39,7 +39,7 @@ const ClientForm = ({ onSubmit, client }) => {
                     <SheetHeader>
                         <SheetTitle>{client ? 'Edit Client' : 'Add Client'}</SheetTitle>
                         <SheetDescription>
-                            {client ? 'Form untuk mengubah client.' : 'Form untuk menambahkan client.'}
+                            {client ? 'Form to edit a client.' : 'Form to add a new client.'}
                         </SheetDescription>
                     </SheetHeader>
                     <div className='flex flex-col gap-4 py-4'>
@@ -48,12 +48,12 @@ const ClientForm = ({ onSubmit, client }) => {
                             name='name'
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Client</FormLabel>
+                                    <FormLabel>Client Name</FormLabel>
                                     <FormControl>
                                         <Input placeholder='OCBC' {...field} className='col-span-3' />
                                     </FormControl>
                                     <FormDescription>
-                                        Kolom nama client.
+                                        Field for the client's name.
                                     </FormDescription>
                                     <FormMessage />
                                 </FormItem>
@@ -66,10 +66,10 @@ const ClientForm = ({ onSubmit, client }) => {
                                 <FormItem>
                                     <FormLabel>Address</FormLabel>
                                     <FormControl>
-                                        <Input placeholder='Jakarta Selatan' {...field} className='col-span-3' />
+                                        <Input placeholder='South Jakarta' {...field} className='col-span-3' />
                                     </FormControl>
                                     <FormDescription>
-                                        Kolom alamat client.
+                                        Field for the client's address.
                                     </FormDescription>
                                     <FormMessage />
                                 </FormItem>
@@ -77,9 +77,7 @@ const ClientForm = ({ onSubmit, client }) => {
                         />
                     </div>
                     <SheetFooter>
-                        <SheetClose asChild>
-                            <Button type='submit'>{client ? 'Edit Client' : 'Add Client'}</Button>
-                        </SheetClose>
+                        <Button type='submit'>{isLoading ? 'Loading...' : client ? 'Edit Client' : 'Add Client'}</Button>
                     </SheetFooter>
                 </form>
             </Form>
@@ -89,7 +87,8 @@ const ClientForm = ({ onSubmit, client }) => {
 
 ClientForm.propTypes = {
     onSubmit: PropTypes.func,
-    client: PropTypes.object
+    client: PropTypes.object,
+    isLoading: PropTypes.bool
 }
 
 export default ClientForm;

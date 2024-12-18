@@ -69,7 +69,7 @@ const TestForm = ({ users, clients, initialValues, onUserSearch, onClientSearch,
     return (
         <div className='w-full space-y-4'>
             <h1 className='md:text-lg font-semibold'>{initialValues ? 'Edit Test' : 'Add Test'}</h1>
-            <span className='md:text-sm font-light'>{initialValues ? 'Form untuk mengubah test.' : 'Form untuk menambahkan test.'}</span>
+            <span className='md:text-sm font-light'>{initialValues ? 'Form to edit the test.' : 'Form to add a new test.'}</span>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(handleSubmit)} className='space-y-8'>
                     <FormField
@@ -79,10 +79,10 @@ const TestForm = ({ users, clients, initialValues, onUserSearch, onClientSearch,
                             <FormItem>
                                 <FormLabel>File</FormLabel>
                                 <FormControl>
-                                    <Input {...fieldProps} type='file' placeholder='File Test' accept='image/*, application/pdf' onChange={(e) => onChange(e.target.files && e.target.files[0])} />
+                                    <Input {...fieldProps} type='file' placeholder='Test File' accept='image/*, application/pdf' onChange={(e) => onChange(e.target.files && e.target.files[0])} />
                                 </FormControl>
                                 <FormDescription>
-                                    Masukkan file test dalam format pdf atau image.
+                                    Upload the test file in PDF or image format.
                                 </FormDescription>
                                 <FormMessage />
                             </FormItem>
@@ -99,7 +99,7 @@ const TestForm = ({ users, clients, initialValues, onUserSearch, onClientSearch,
                                         <PopoverTrigger asChild>
                                             <FormControl>
                                                 <Button variant={'outline'} className={cn('pl-3 text-left font-normal', !field.value && 'text-muted-foreground')}>
-                                                    {field.value ? (format(field.value, 'PPP')) : (<span>Pick a date</span>)}
+                                                    {field.value ? (format(field.value, 'PPP')) : (<span>Select a date</span>)}
                                                     <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
                                                 </Button>
                                             </FormControl>
@@ -115,7 +115,7 @@ const TestForm = ({ users, clients, initialValues, onUserSearch, onClientSearch,
                                         </PopoverContent>
                                     </Popover>
                                     <FormDescription>
-                                        Kolom tanggal deadline.
+                                        Field for the deadline date.
                                     </FormDescription>
                                     <FormMessage />
                                 </FormItem>
@@ -131,7 +131,7 @@ const TestForm = ({ users, clients, initialValues, onUserSearch, onClientSearch,
                                         <Input type='time' {...field} />
                                     </FormControl>
                                     <FormDescription>
-                                        Kolom jam deadline.
+                                        Field for the deadline time.
                                     </FormDescription>
                                     <FormMessage />
                                 </FormItem>
@@ -158,7 +158,7 @@ const TestForm = ({ users, clients, initialValues, onUserSearch, onClientSearch,
                                     </SelectContent>
                                 </Select>
                                 <FormDescription>
-                                    Kolom pilihan client.
+                                    Field to select a client.
                                 </FormDescription>
                                 <FormMessage/>
                             </FormItem>
@@ -174,7 +174,7 @@ const TestForm = ({ users, clients, initialValues, onUserSearch, onClientSearch,
                                     <Input placeholder='Description' {...field} />
                                 </FormControl>
                                 <FormDescription>
-                                    Kolom description.
+                                    Field for the description.
                                 </FormDescription>
                                 <FormMessage />
                             </FormItem>

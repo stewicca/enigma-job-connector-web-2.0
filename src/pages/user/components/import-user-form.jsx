@@ -11,11 +11,11 @@ const ImportUserForm = ({ onSubmit }) => {
     const form = useForm({
         resolver: zodResolver(importFormSchema)
     });
-    
+
     const handleSubmit = async (values) => {
         await onSubmit(values);
     }
-    
+
     return (
         <DialogContent className='sm:max-w-[425px]'>
             <Form {...form}>
@@ -36,7 +36,7 @@ const ImportUserForm = ({ onSubmit }) => {
                                     <Input type='file' onChange={(e) => field.onChange(e.target.files[0])} />
                                 </FormControl>
                                 <FormDescription>
-                                    Masukkan file excel untuk mengimport user
+                                    Upload an excel file to import users
                                 </FormDescription>
                                 <FormMessage />
                             </FormItem>
