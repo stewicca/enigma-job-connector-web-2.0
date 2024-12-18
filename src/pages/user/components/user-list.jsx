@@ -10,7 +10,6 @@ import { TableHeadSort } from '@/components/common/table-head-sort.jsx';
 import { PaginationComponent } from '@/components/common/pagination.jsx';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
-// TODO: Import
 const UserList = ({ data, onDelete, onPage, direction, onSort, search, onSearch }) => {
     const router = useRouter();
 

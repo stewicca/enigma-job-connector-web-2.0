@@ -20,7 +20,7 @@ const EditTestPage = () => {
     const router = useRouter();
     const [user, setUser] = useDebounce();
     const [client, setClient] = useDebounce();
-    const { data: users, isLoading: isUserLoading } = useFetch(HTTP_METHODS.GET, USER_API_URL, {}, [['name', user], ['size', 5]]);
+    const { data: users, isLoading: isUserLoading } = useFetch(HTTP_METHODS.GET, USER_API_URL, {}, [['name', user], ['size', 5], ['role', 'role_trainee']]);
     const { data: clients, isLoading: isClientLoading } = useFetch(HTTP_METHODS.GET, CLIENT_API_URL, {}, [['name', client], ['size', 5]]);
     const { data: test, isLoading: isTestFetching  } = useFetch(HTTP_METHODS.FIND, TEST_API_URL, {}, [id]);
     const { mutateAsync: editTest, isPending: isTestUpdating } = useFetch(HTTP_METHODS.PUT, TEST_API_URL, { headers: { 'Content-Type': 'multipart/form-data' } }, [id]);

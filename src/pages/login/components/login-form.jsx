@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import Enigma from '@/components/common/enigma.jsx';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginFormSchema } from '@/pages/login/schema/index.js';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
@@ -12,7 +13,6 @@ const LoginForm = ({ isLoading, onSubmit }) => {
         resolver: zodResolver(loginFormSchema),
         defaultValues: {
             email: '',
-            // username: '',
             password: ''
         },
     });
@@ -24,6 +24,9 @@ const LoginForm = ({ isLoading, onSubmit }) => {
     return (
         <div className='flex min-h-screen items-center justify-center bg-gray-100'>
             <div className='w-full max-w-md space-y-8 rounded-lg bg-white p-6 shadow-md'>
+                <div className='w-fit mx-auto'>
+                    <Enigma size='20' />
+                </div>
                 <div className='text-center'>
                     <h1 className='text-3xl font-bold'>Welcome Back</h1>
                     <p className='mt-2 text-sm text-gray-600'>Please sign in to your account</p>
@@ -43,19 +46,6 @@ const LoginForm = ({ isLoading, onSubmit }) => {
                                 </FormItem>
                             )}
                         />
-                        {/*<FormField*/}
-                        {/*    control={form.control}*/}
-                        {/*    name='username'*/}
-                        {/*    render={({ field }) => (*/}
-                        {/*        <FormItem>*/}
-                        {/*            <FormLabel>Username</FormLabel>*/}
-                        {/*            <FormControl>*/}
-                        {/*                <Input placeholder='amanda.estika' {...field} />*/}
-                        {/*            </FormControl>*/}
-                        {/*            <FormMessage />*/}
-                        {/*        </FormItem>*/}
-                        {/*    )}*/}
-                        {/*/>*/}
                         <FormField
                             control={form.control}
                             name='password'

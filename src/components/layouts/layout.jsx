@@ -4,6 +4,7 @@ import { useFetch } from '@/hooks/use-fetch.js';
 import { HTTP_METHODS } from '@/lib/constant.js';
 import { useRouter } from '@/hooks/use-router.js';
 import { Separator } from '@/components/ui/separator';
+import { useLocation, useParams } from 'react-router';
 import { useJwtDecode } from '@/hooks/use-jwt-decode.js';
 import { Loading } from '@/components/common/loading.jsx';
 import { getErrorMessage } from '@/lib/get-error-message.js';
@@ -56,7 +57,9 @@ const adminItems = [
 export const Layout = ({ children }) => {
     const router = useRouter();
     const { role } = useJwtDecode();
-    const breadcrumbs = generateBreadcrumbs();
+    const location = useLocation();
+    const params = useParams();
+    const breadcrumbs = generateBreadcrumbs(location.pathname, params);
     const { data, isLoading } = useFetch(HTTP_METHODS.GET, GET_ME_API_URL);
     const { mutateAsync: logout } = useFetch(HTTP_METHODS.POST, LOGOUT_API_URL);
 
@@ -78,21 +81,23 @@ export const Layout = ({ children }) => {
             <SidebarComponent name={data?.data?.name} items={role === 'SuperAdmin' ? superAdminItems : adminItems} onLogout={handleLogout} />
             <SidebarInset>
                 <header className='flex h-16 shrink-0 items-center gap-2 border-b px-4'>
-                    <SidebarTrigger className='-ml-1' />
-                    <Separator orientation='vertical' className='mr-2 h-4' />
+                    <SidebarTrigger className='-ml-1'/>
+                    <Separator orientation='vertical' className='mr-2 h-4'/>
                     <Breadcrumb>
                         <BreadcrumbList>
                             {breadcrumbs.map((crumb, index) => (
                                 <div key={index} className='flex items-center gap-2'>
-                                    <BreadcrumbItem>
-                                        {index < breadcrumbs.length - 1 ? (
-                                            <BreadcrumbLink href={crumb.url}>{crumb.title}</BreadcrumbLink>
-                                        ) : (
-                                            <BreadcrumbPage>{crumb.title}</BreadcrumbPage>
-                                        )}
-                                    </BreadcrumbItem>
-                                    {index < breadcrumbs.length - 1 && (
-                                        <BreadcrumbSeparator />
+                                    {!crumb.isParam && (
+                                        <BreadcrumbItem>
+                                            {index < breadcrumbs.length - 1 ? (
+                                                <BreadcrumbLink href={crumb.url}>{crumb.title}</BreadcrumbLink>
+                                            ) : (
+                                                <BreadcrumbPage>{crumb.title}</BreadcrumbPage>
+                                            )}
+                                        </BreadcrumbItem>
+                                    )}
+                                    {index < breadcrumbs.length - 1 && !crumb.isParam && !breadcrumbs[index + 1]?.isParam && (
+                                        <BreadcrumbSeparator/>
                                     )}
                                 </div>
                             ))}
